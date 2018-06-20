@@ -11,11 +11,29 @@ BinarySearchTree.prototype.insert = function (value) {
 		} else {
 			this.left.insert(value);
 		}
-	} else {
+	} else if (value > this.value) {
 		if (!this.right) {
 			this.right = new BinarySearchTree(value);
 		} else {
 			this.right.insert(value);
+		}
+	}
+};
+
+BinarySearchTree.prototype.contains = function (value) {
+	if (value === this.value) {
+		return true;
+	} else if (value < this.value) {
+		if (!this.left) {
+			return false;
+		} else {
+			return this.left.contains(value);
+		}
+	} else if (value > this.value) {
+		if (!this.right) {
+			return false;
+		} else {
+			return this.right.contains(value);
 		}
 	}
 };
@@ -33,4 +51,4 @@ binarySearchTree.insert(85);
 binarySearchTree.insert(105);
 binarySearchTree.insert(10);
 
-console.log(binarySearchTree.right.right);
+console.log(binarySearchTree.contains(85));
