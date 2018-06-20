@@ -56,6 +56,21 @@ BinarySearchTree.prototype.depthFirstTraversal = function (iteratorFunction, ord
 	}
 };
 
+BinarySearchTree.prototype.breadthFirstTraversal = function (iteratorFunction) {
+	let queue = [];
+	queue.push(this);
+	while (queue.length) {
+		let treeNode = queue.shift();
+		iteratorFunction(treeNode);
+		if (treeNode.left) {
+			queue.push(treeNode.left);
+		}
+		if (treeNode.right) {
+			queue.push(treeNode.right);
+		}
+	}
+};
+
 const binarySearchTree = new BinarySearchTree(50);
 binarySearchTree.insert(30);
 binarySearchTree.insert(70);
@@ -69,6 +84,15 @@ binarySearchTree.insert(85);
 binarySearchTree.insert(105);
 binarySearchTree.insert(10);
 
+const order = 'in-order';
+console.log('Depth First Traversal with ', order, ' method.');
 binarySearchTree.depthFirstTraversal(function (node) {
 	console.log(node);
-}, 'post-order');
+}, order);
+
+console.log('\n');
+
+console.log('Breadth First Traversal.');
+binarySearchTree.breadthFirstTraversal(function (node) {
+	console.log(node.value);
+});
