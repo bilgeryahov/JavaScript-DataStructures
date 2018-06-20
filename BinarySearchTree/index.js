@@ -51,6 +51,9 @@ BinarySearchTree.prototype.depthFirstTraversal = function (iteratorFunction, ord
 	if (this.right) {
 		this.right.depthFirstTraversal(iteratorFunction, order);
 	}
+	if (order === 'post-order') {
+		iteratorFunction(this.value);
+	}
 };
 
 const binarySearchTree = new BinarySearchTree(50);
@@ -68,4 +71,4 @@ binarySearchTree.insert(10);
 
 binarySearchTree.depthFirstTraversal(function (node) {
 	console.log(node);
-}, 'pre-order');
+}, 'post-order');
