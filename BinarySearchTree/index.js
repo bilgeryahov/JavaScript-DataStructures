@@ -38,13 +38,15 @@ BinarySearchTree.prototype.contains = function (value) {
 	}
 };
 
-BinarySearchTree.prototype.depthFirstTraversal = function (iteratorFunction) {
+BinarySearchTree.prototype.depthFirstTraversal = function (iteratorFunction, order) {
 	if (this.left) {
-		this.left.depthFirstTraversal(iteratorFunction);
+		this.left.depthFirstTraversal(iteratorFunction, order);
 	}
-	iteratorFunction(this.value);
+	if (order === 'in-order') {
+		iteratorFunction(this.value);
+	}
 	if (this.right) {
-		this.right.depthFirstTraversal(iteratorFunction);
+		this.right.depthFirstTraversal(iteratorFunction, order);
 	}
 };
 
@@ -63,4 +65,4 @@ binarySearchTree.insert(10);
 
 binarySearchTree.depthFirstTraversal(function (node) {
 	console.log(node);
-});
+}, 'in-order');
