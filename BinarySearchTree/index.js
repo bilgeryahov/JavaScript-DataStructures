@@ -71,6 +71,22 @@ BinarySearchTree.prototype.breadthFirstTraversal = function (iteratorFunction) {
 	}
 };
 
+BinarySearchTree.prototype.getMinVal = function () {
+	if (this.left) {
+		return this.left.getMinVal();
+	} else {
+		return this.value;
+	}
+};
+
+BinarySearchTree.prototype.getMaxVal = function () {
+	if (this.right) {
+		return this.right.getMaxVal();
+	} else {
+		return this.value;
+	}
+};
+
 const binarySearchTree = new BinarySearchTree(50);
 binarySearchTree.insert(30);
 binarySearchTree.insert(70);
@@ -96,3 +112,13 @@ console.log('Breadth First Traversal.');
 binarySearchTree.breadthFirstTraversal(function (node) {
 	console.log(node.value);
 });
+
+console.log('\n');
+
+console.log('Getting minimal value.');
+console.log(binarySearchTree.getMinVal());
+
+console.log('\n');
+
+console.log('Getting maximal value.');
+console.log(binarySearchTree.getMaxVal());
