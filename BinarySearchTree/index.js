@@ -39,6 +39,9 @@ BinarySearchTree.prototype.contains = function (value) {
 };
 
 BinarySearchTree.prototype.depthFirstTraversal = function (iteratorFunction, order) {
+	if (order === 'pre-order') {
+		iteratorFunction(this.value);
+	}
 	if (this.left) {
 		this.left.depthFirstTraversal(iteratorFunction, order);
 	}
@@ -65,4 +68,4 @@ binarySearchTree.insert(10);
 
 binarySearchTree.depthFirstTraversal(function (node) {
 	console.log(node);
-}, 'in-order');
+}, 'pre-order');
