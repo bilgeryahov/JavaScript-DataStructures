@@ -13,12 +13,17 @@ HashTable.prototype.hash = function (key) {
 
 HashTable.prototype.insert = function (key, value) {
 	let index = this.hash(key);
-	console.log(index);
 	if (!this.buckets[index]) {
 		this.buckets[index] = new HashNode(key, value);
+	} else if (this.buckets[index].key === key) {
+		this.buckets[index].value = value;
 	} else {
 		let currentNode = this.buckets[index];
 		while (currentNode.next) {
+			if (currentNode.next.key === key) {
+				currentNode.next.value = value;
+				return;
+			}
 			currentNode = currentNode.next;
 		}
 		currentNode.next = new HashNode(key, value);
@@ -35,5 +40,4 @@ const hashTable1 = new HashTable(30);
 hashTable1.insert('Dean', 'dean@gmail.com');
 hashTable1.insert('Megan', 'megan@gmail.com');
 hashTable1.insert('Dane', 'dane@yahoo.com');
-hashTable1.insert('Daen', 'daen@yahoo.com');
 console.log(hashTable1.buckets);
