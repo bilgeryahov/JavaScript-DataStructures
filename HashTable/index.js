@@ -40,4 +40,9 @@ const hashTable1 = new HashTable(30);
 hashTable1.insert('Dean', 'dean@gmail.com');
 hashTable1.insert('Megan', 'megan@gmail.com');
 hashTable1.insert('Dane', 'dane@yahoo.com');
+hashTable1.insert('Dean', 'deanmachine@gmail.com');
+hashTable1.insert('Megan', 'megansmith@gmail.com');
+hashTable1.insert('Dane', 'dane1010@outlook.com');
+
+
 console.log(hashTable1.buckets);
