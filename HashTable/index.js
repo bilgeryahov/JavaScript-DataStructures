@@ -46,6 +46,18 @@ HashTable.prototype.get = function (key) {
 	}
 };
 
+HashTable.prototype.retrieveAll = function () {
+	let allNodes = [];
+	for (let i = 0; i < this.numBuckets; i++) {
+		let currentNode = this.buckets[i];
+		while (currentNode) {
+			allNodes.push(currentNode);
+			currentNode = currentNode.next;
+		}
+	}
+	return allNodes;
+};
+
 function HashNode(key, value, next) {
 	this.key = key;
 	this.value = value;
@@ -59,6 +71,9 @@ hashTable1.insert('Dane', 'dane@yahoo.com');
 hashTable1.insert('Dean', 'deanmachine@gmail.com');
 hashTable1.insert('Megan', 'megansmith@gmail.com');
 hashTable1.insert('Dane', 'dane1010@outlook.com');
+hashTable1.insert('Joe', 'joey@facebook.com');
+hashTable1.insert('Samantha', 'sammy@twitter.com');
 
-console.log(hashTable1.get('Dane'));
-console.log(hashTable1.get('Jamie'));
+console.log(hashTable1.get('Samantha'));
+
+console.log(hashTable1.retrieveAll());
