@@ -30,6 +30,22 @@ HashTable.prototype.insert = function (key, value) {
 	}
 };
 
+HashTable.prototype.get = function (key) {
+	let index = this.hash(key);
+	if (!this.buckets[index]) {
+		return null;
+	} else {
+		let currentNode = this.buckets[index];
+		while (currentNode) {
+			if (currentNode.key === key) {
+				return currentNode.value;
+			}
+			currentNode = currentNode.next;
+		}
+		return null;
+	}
+};
+
 function HashNode(key, value, next) {
 	this.key = key;
 	this.value = value;
@@ -44,5 +60,5 @@ hashTable1.insert('Dean', 'deanmachine@gmail.com');
 hashTable1.insert('Megan', 'megansmith@gmail.com');
 hashTable1.insert('Dane', 'dane1010@outlook.com');
 
-
-console.log(hashTable1.buckets);
+console.log(hashTable1.get('Dane'));
+console.log(hashTable1.get('Jamie'));
